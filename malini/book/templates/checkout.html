@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %} Checkout {% endblock %}
+{% block content %}
+<div class="container card bg-white mb-3 pb-2" style="border-radius:80px; box-shadow:20px 20px 25px green;">
+    <div class="row">
+        <div class="col-md-6">
+            <h3 style="color:red; text-shadow:1px 1px 3px grey;">Items in Cart</h3>
+             <table class="table">
+                <thead>
+                <tr>
+                    <th style="color:black;">SN</th>
+                    <th style="color:black;">Product</th>
+                    <th style="color:black;">Rate</th>
+                    <th style="color:black;">Quantity</th>
+                    <th style="color:black;">Subtotal</th>
+                    <th style="color:black;">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cp in cart.cartproduct_set.all %}
+                <tr>
+                   <td style="color:blue;">{{forloop.counter}}</td>
+                   <td style="color:blue;">{{cp.product.title}}</td>
+                   <td style="color:blue;">{{cp.rate}}</td>
+                   <td style="color:blue;">{{cp.quantity}}</td>
+                   <td style="color:blue;">{{cp.subtotal}}</td>
+                </tr>
+                 {% endfor %}
+                <tr>
+                    <th colspan="4" class="text-right" style="color:black;">Total</th>
+                    <th style="color:brown;">Rs.{{cart.total}}</th>
+                </tr>
+                 </tbody>
+              </table>
+        </div>
+        <div calss="col-md-6">
+            <h3 style="color:blue; text-shadow:1px 1px 3px lime;">Checkout Form</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn" style="color:blue ;border-color:red; border-style:solid;">Place Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

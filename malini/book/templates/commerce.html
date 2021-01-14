@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Arts{% endblock %}
+{% block content %}
+
+        {% for cat in allcategories %}
+    <h3 style="text-align:center; margin-top:3px; margin-bottom:10px; color:red; text-shadow:1px 1px 2px grey;">{{cat.title}}</h3>
+<div class="container">
+    <div class="row">
+        {% for p in cat.product_set.all %}
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 card bg-dark">
+            <div class="m-4">
+                <h3 class="text-center" ><a href="{% url 'detail' p.slug %}">{{p.title}}</a></h3>
+                <a href="{% url 'detail' p.slug %}"> <img src="{{p.image.url}}" alt="" class="img-fluid" style="height:200px; object-fit:contain; "></a>
+                <p class="mt-3" style="color:white;">Price: <strike>Rs. {{p.marked_price}}</strike> Rs. {{p.selling_price}}</p>
+                <a href="{% url 'cart' p.id  %}" class="btn" id="button" style="color:blue; text-shadow:1px 1px black; border-style:solid; border-color:red;">Add to Cart</a>
+           </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

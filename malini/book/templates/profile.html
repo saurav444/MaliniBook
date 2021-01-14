@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3 style="color:red;text-shadow:1px 1px 2px grey;">Detail Information</h3>
+            <p style="color:green;"><span class="font-weight-bold" style="color:blue;">Name: </span>{{customer.full_name}}</p>
+            <p style="color:green;"><span class="font-weight-bold" style="color:blue;">Username: </span>{{customer.user.username}}</p>
+             <p style="color:green;"><span class="font-weight-bold" style="color:blue;">E-mail: </span>{{customer.user.email}}</p>
+             <p style="color:green;"><span class="font-weight-bold" style="color:blue;">Address: </span>{{customer.address}}</p>
+             <p style="color:green;"><span class="font-weight-bold" style="color:blue;">Joined_on: </span>{{customer.joined_on}}</p>
+        </div>
+        <div class="col-md-6">
+            <h3 style="color:red;text-shadow:1px 1px 2px grey;">Previous Orders</h3>
+            <hr>
+            <table class="table card bg-dark" style="box-shadow:20px 20px 25px grey; border-radius:40px;">
+                <thead>
+                <tr>
+                    <th style="color:blue;">SN</th>
+                    <th style="color:blue;">Order Id</th>
+                    <th style="color:blue;">Amount</th>
+                    <th style="color:blue;">Ordered on</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ord in orders %}
+                <tr>
+                    <td style="color:red;">{{forloop.counter}}</td>
+                    <td><a href="{% url 'customerorderdetail' ord.pk %}"> #ORDER_{{ord.id}}</a></td>
+                    <td style="color:red;">{{ord.total}}</td>
+                    <td style="color:red;">{{ord.created_at}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

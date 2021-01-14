@@ -1,0 +1,39 @@
+.navbar-nav{
+margin-left:auto;
+}
+h6{
+padding:9px;
+}
+#a{
+box-shadow:4px 4px 6px grey;
+}
+.nav-item a{
+text-shadow:2px 2p 4px red;
+}
+.mynav a:hover{
+border-bottom: 2px solid white;
+}
+.search input{
+width:320px;
+height:35px;
+border-radius:100px;
+box-shadow:2px 2px 6px red;
+border:3px solid black;
+text-align:center;
+}
+.search button{
+border-radius:10px;
+box-shadow:2px 2px 2px red;
+}
+.card{
+text-align:center;
+}
+.btn:active{
+color:green;
+}
+.btn:hover{
+color:green;
+}
+#pg{
+color:green;
+}

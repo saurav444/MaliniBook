@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %} My Cart{% endblock %}
+{% block content %}
+<div class = "container">
+    <div class = "row">
+        <div class="col-md-8">
+            <h4 style="color:red; text-shadow:1px 1px 3px grey;">Items in Cart</h4><hr>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th style="color:white;">SN</th>
+                    <th style="color:white;">Product</th>
+                    <th style="color:white;">Rate</th>
+                    <th style="color:white;">Quantity</th>
+                    <th style="color:white;">Subtotal</th>
+                    <th style="color:white;">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cp in cart.cartproduct_set.all %}
+                <tr>
+                   <td style="color:lime;">{{forloop.counter}}</td>
+                   <td style="color:lime;">{{cp.product.title}}</td>
+                   <td style="color:lime;">{{cp.rate}}</td>
+                   <td style="color:lime;">{{cp.quantity}}</td>
+                   <td style="color:lime;">{{cp.subtotal}}</td>
+                    <td>
+                     <a href ="{% url 'manager_cart' cp.id %}?action=inc" class="btn btn-primary">+</a>
+                     <a href ="{% url 'manager_cart' cp.id %}?action=dcr" class="btn btn-warning">-</a>
+                     <a href ="{% url 'manager_cart' cp.id %}?action=rmv" class="btn btn-danger">x</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th colspan="4" class="text-right">Total</th>
+                    <th>Rs.{{cart.total}}</th>
+                </tr>
+                {% if cart.cartproduct_set.all %}
+                <tr>
+                    <th><a class="btn" style="color:white ;border-color:red; border-style:solid;" href="{% url 'checkout' %}">Checkout</a></th>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
